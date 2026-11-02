@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ALMA — Spa &amp; Bem-estar · Polana, Maputo</title>
-<meta name="description" content="ALMA é um spa minimalista na Polana, Maputo. Massagens, faciais e rituais de corpo, só por marcação.">
+<link rel="icon" href="images/logo.png">
+<meta name="description" content="ALMA é um spa e salão minimalista na Polana, Maputo. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -43,6 +44,11 @@
   }
   .brand{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;letter-spacing:.28em;font-weight:500}
   .brand small{display:block;font-family:"Manrope",sans-serif;font-size:9px;letter-spacing:.34em;color:var(--muted);font-weight:500}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .logo-img{height:46px;width:auto}
+  .foot-logo{height:58px;width:auto;margin:0 auto 8px;display:block}
+  .cat-head{font-family:"Cormorant Garamond",Georgia,serif;font-size:32px;font-weight:500;margin:44px 0 18px}
+  .cat-head:first-child{margin-top:0}
   nav{display:flex;gap:22px;align-items:center;font-size:13px;letter-spacing:.08em;flex-wrap:wrap}
   nav a{color:var(--muted)}
   nav a:hover{color:var(--ink)}
@@ -194,7 +200,7 @@
 <body>
 <div class="wrap">
   <header>
-    <a href="#inicio" class="brand"><span id="brand-name">ALMA</span><small>SPA &amp; BEM-ESTAR</small></a>
+    <a href="#inicio" class="brand"><img class="logo-img" src="images/logo.png" alt="ALMA"><span><span id="brand-name">ALMA</span><small>SPA &amp; BEM-ESTAR</small></span></a>
     <nav>
       <a href="#inicio" data-nav="inicio">Início</a>
       <a href="#servicos" data-nav="servicos">Serviços</a>
@@ -207,12 +213,12 @@
 <!-- INÍCIO -->
 <div id="view-inicio" class="view active">
   <div class="hero-video">
-    <video src="videos/hero.mp4" autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/photos/6629608/pexels-photo-6629608.jpeg?auto=compress&cs=tinysrgb&w=1200"></video>
+    <video src="videos/hero.mp4" autoplay muted loop playsinline preload="metadata" poster="images/facial.jpg"></video>
   </div>
   <div class="hero-text">
     <p class="eyebrow">Polana · Maputo</p>
     <h1>O cuidado que acalma.</h1>
-    <p>Um spa minimalista onde o tempo abranda. Massagens, faciais e rituais de corpo, só por marcação.</p>
+    <p>Um spa e salão minimalista onde o tempo abranda. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.</p>
     <div class="hero-cta">
       <a href="#reservar" class="btn">Agendar consulta</a>
       <a href="#servicos" class="btn outline">Ver todos os serviços</a>
@@ -332,6 +338,7 @@
 
 <footer class="on-dark">
   <div class="wrap">
+    <img class="logo-img foot-logo" src="images/logo.png" alt="ALMA">
     <p class="brand">ALMA</p>
     <p>Polana, Maputo · Só por marcação · © <span id="year">2026</span> ALMA Spa</p>
     <nav>
@@ -346,12 +353,25 @@
 <script>
   // ---------- Dados ----------
   var DEFAULT_SERVICES = [
-    {id:'relaxante', name:'Massagem relaxante', price:2500, dur:60, img:'https://images.pexels.com/photos/3865491/pexels-photo-3865491.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Movimentos lentos e profundos para soltar o corpo e acalmar a mente.'},
-    {id:'pedras', name:'Massagem com pedras quentes', price:3800, dur:90, img:'https://images.pexels.com/photos/6187294/pexels-photo-6187294.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pedras aquecidas sobre o corpo para um relaxamento profundo e duradouro.'},
-    {id:'facial', name:'Facial profundo', price:3000, dur:60, img:'images/facial.jpg', desc:'Limpeza, massagem facial e hidratação. Pele limpa, luminosa e calma.'},
-    {id:'ritual', name:'Ritual do corpo', price:4200, dur:90, img:'images/ritual.jpg', desc:'Esfoliação suave seguida de hidratação completa com óleos naturais.'},
-    {id:'desportiva', name:'Massagem desportiva', price:2800, dur:60, img:'https://images.pexels.com/photos/5240818/pexels-photo-5240818.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Para músculos cansados e tensos. Recupera o corpo depois do esforço.'},
-    {id:'dia', name:'Dia de spa', price:7500, dur:180, img:'images/dia-de-spa.jpg', desc:'O ritual completo: massagem, facial, chá e descanso. O dia é todo teu.'}
+    {id:'relaxante', cat:'Massagens', name:'Massagem relaxante', price:2500, dur:60, img:'images/oleo-costas.jpg', desc:'Movimentos lentos e profundos com óleos naturais, para soltar o corpo e acalmar a mente.'},
+    {id:'pedras', cat:'Massagens', name:'Massagem com pedras quentes', price:3800, dur:90, img:'https://images.pexels.com/photos/6187294/pexels-photo-6187294.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pedras aquecidas sobre o corpo para um relaxamento profundo e duradouro.'},
+    {id:'desportiva', cat:'Massagens', name:'Massagem desportiva', price:2800, dur:60, img:'images/oleo-cabaca.jpg', desc:'Para músculos cansados e tensos. Recupera o corpo depois do esforço.'},
+    {id:'ritual', cat:'Massagens', name:'Ritual do corpo', price:4200, dur:90, img:'images/ritual.jpg', desc:'Esfoliação suave seguida de hidratação completa com óleos naturais.'},
+    {id:'dia', cat:'Massagens', name:'Dia de spa', price:7500, dur:180, img:'images/dia-de-spa.jpg', desc:'O ritual completo: massagem, facial, chá e descanso. O dia é todo teu.'},
+    {id:'facial', cat:'Pele', name:'Facial profundo', price:3000, dur:60, img:'images/facial.jpg', desc:'Limpeza, massagem facial e hidratação. Pele limpa, luminosa e calma.'},
+    {id:'hidratacao', cat:'Pele', name:'Hidratação facial', price:2200, dur:45, img:'https://images.pexels.com/photos/6724510/pexels-photo-6724510.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Hidratação intensa com massagem suave. Para pele seca ou cansada.'},
+    {id:'limpeza', cat:'Pele', name:'Limpeza de pele com argila', price:2800, dur:60, img:'https://images.pexels.com/photos/7479667/pexels-photo-7479667.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Máscara de argila e limpeza profunda. Pele renovada e sem brilho.'},
+    {id:'laser', cat:'Pele', name:'Tratamento a laser', price:4500, dur:45, img:'https://images.pexels.com/photos/7446683/pexels-photo-7446683.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sessão de laser para uma pele mais lisa e uniforme, com avaliação incluída.'},
+    {id:'manicure', cat:'Mãos e pés', name:'Manicure', price:800, dur:45, img:'https://images.pexels.com/photos/14741511/pexels-photo-14741511.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cuidado das unhas e das mãos, com verniz à tua escolha.'},
+    {id:'pedicure', cat:'Mãos e pés', name:'Pedicure', price:1000, dur:60, img:'https://images.pexels.com/photos/19695950/pexels-photo-19695950.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pés cuidados, unhas limpas e verniz, com massagem relaxante no fim.'},
+    {id:'gel', cat:'Mãos e pés', name:'Unhas de gel', price:1800, dur:90, img:'https://images.pexels.com/photos/5681800/pexels-photo-5681800.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Unhas de gel com brilho duradouro e acabamento perfeito.'},
+    {id:'depilacao', cat:'Depilação', name:'Depilação — perna completa', price:1200, dur:45, img:'https://images.pexels.com/photos/5938269/pexels-photo-5938269.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Depilação completa das pernas, com hidratação no fim.'},
+    {id:'sobrancelhas', cat:'Depilação', name:'Design de sobrancelhas', price:500, dur:20, img:'https://images.pexels.com/photos/9163306/pexels-photo-9163306.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sobrancelhas desenhadas à medida do teu rosto.'},
+    {id:'lavagem', cat:'Cabelo', name:'Lavagem + escova', price:900, dur:45, img:'https://images.pexels.com/photos/11360227/pexels-photo-11360227.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Lavagem com massagem ao couro cabeludo e escova final.'},
+    {id:'trancas', cat:'Cabelo', name:'Tranças', price:3500, dur:180, img:'https://images.pexels.com/photos/7275385/pexels-photo-7275385.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Tranças feitas com calma e acabamento limpo, no estilo que escolheres.'},
+    {id:'coloracao', cat:'Cabelo', name:'Coloração capilar', price:2200, dur:90, img:'https://images.pexels.com/photos/7389083/pexels-photo-7389083.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cor e brilho, com tratamento para proteger o cabelo.'},
+    {id:'maq-dia', cat:'Maquilhagem', name:'Maquilhagem de dia', price:1500, dur:45, img:'https://images.pexels.com/photos/12402184/pexels-photo-12402184.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem leve e natural para o dia a dia.'},
+    {id:'maq-festa', cat:'Maquilhagem', name:'Maquilhagem de festa', price:2500, dur:60, img:'https://images.pexels.com/photos/33927084/pexels-photo-33927084.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem completa e duradoura para festas e ocasiões especiais.'}
   ];
   var DEFAULT_SETTINGS = {spaName:'ALMA', whatsapp:'258840000000', hours:'Seg–Sáb 9h – 19h · Dom 10h – 16h', location:'Polana, Maputo'};
   var TIME_SLOTS = ['9h00','10h00','11h00','13h00','14h00','15h00','16h00','17h00','18h00'];
@@ -474,13 +494,15 @@
   }
   function renderHome(){
     var el = document.getElementById('home-services');
-    el.innerHTML = getServices().map(serviceCard).join('');
+    el.innerHTML = getServices().slice(0, 6).map(serviceCard).join('');
     bindBookLinks(el);
   }
   function renderServices(){
     var st = getSettings();
     var el = document.getElementById('services-list');
-    el.innerHTML = getServices().map(function(s){
+    var CATS = ['Massagens','Pele','Mãos e pés','Depilação','Cabelo','Maquilhagem'];
+    var all = getServices();
+    function row(s){
       return '<div class="svc-row">' +
         '<img src="' + esc(s.img) + '" alt="' + esc(s.name) + '" loading="lazy">' +
         '<div class="svc-body">' +
@@ -491,7 +513,16 @@
         '<p>' + esc(s.desc) + '</p>' +
         '<div class="mt"><a class="btn small" data-book="' + esc(s.id) + '" href="#reservar">Reservar este serviço</a></div>' +
         '</div></div>';
-    }).join('');
+    }
+    var html = '';
+    CATS.forEach(function(c){
+      var list = all.filter(function(s){ return (s.cat || 'Outros') === c; });
+      if (!list.length) return;
+      html += '<h3 class="cat-head">' + esc(c) + '</h3>' + list.map(row).join('');
+    });
+    var rest = all.filter(function(s){ return CATS.indexOf(s.cat || 'Outros') === -1; });
+    if (rest.length) html += '<h3 class="cat-head">Outros</h3>' + rest.map(row).join('');
+    el.innerHTML = html;
     bindBookLinks(el);
   }
   // ---------- Conta ----------
@@ -734,6 +765,7 @@
         '<label>Foto (por ficheiro)</label>' +
         '<input type="file" accept="image/*" data-photo="' + esc(s.id) + '">' +
         '<label>Nome</label><input type="text" data-field="name" data-id="' + esc(s.id) + '" value="' + esc(s.name) + '">' +
+        '<label>Categoria</label><input type="text" data-field="cat" data-id="' + esc(s.id) + '" value="' + esc(s.cat || '') + '">' +
         '<label>Preço (MT)</label><input type="number" min="0" data-field="price" data-id="' + esc(s.id) + '" value="' + esc(s.price) + '">' +
         '<label>Duração (minutos)</label><input type="number" min="15" data-field="dur" data-id="' + esc(s.id) + '" value="' + esc(s.dur) + '">' +
         '<label>Descrição</label><textarea rows="2" data-field="desc" data-id="' + esc(s.id) + '">' + esc(s.desc) + '</textarea>' +
@@ -743,6 +775,7 @@
     }).join('') +
     '<div class="admin-card"><h4>Adicionar serviço</h4>' +
     '<label>Nome</label><input type="text" id="new-name">' +
+    '<label>Categoria</label><input type="text" id="new-cat" placeholder="Ex.: Massagens">' +
     '<label>Preço (MT)</label><input type="number" min="0" id="new-price">' +
     '<label>Duração (minutos)</label><input type="number" min="15" id="new-dur" value="60">' +
     '<label>Descrição</label><textarea rows="2" id="new-desc"></textarea>' +
@@ -788,6 +821,7 @@
     });
     document.getElementById('add-service').addEventListener('click', function(){
       var name = document.getElementById('new-name').value.trim();
+      var cat = document.getElementById('new-cat').value.trim() || 'Outros';
       var price = parseInt(document.getElementById('new-price').value, 10);
       var dur = parseInt(document.getElementById('new-dur').value, 10) || 60;
       var desc = document.getElementById('new-desc').value.trim();
@@ -795,7 +829,7 @@
       var services = getServices();
       var file = document.getElementById('new-photo').files[0];
       function finish(img){
-        services.push({id:'svc-' + Date.now(), name:name, price:price, dur:dur, desc:desc, img:img});
+        services.push({id:'svc-' + Date.now(), cat:cat, name:name, price:price, dur:dur, desc:desc, img:img});
         save('alma_services', services);
         renderAdminServices();
       }
