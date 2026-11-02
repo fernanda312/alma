@@ -12,7 +12,7 @@
   :root{
     --bg:#faf8f3;
     --ink:#1c1b19;
-    --muted:#6f6a63;
+    --muted:#4c443c;
     --line:#e3ddd2;
     --sage:#7d8471;
     --card:#ffffff;
@@ -20,7 +20,10 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    background:var(--bg);
+    background-color:#2a1d16;
+    background-image:url('images/fundo-degrade.jpg');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
     color:var(--ink);
     font-family:"Manrope",system-ui,sans-serif;
     font-weight:300;
@@ -120,6 +123,11 @@
   }
   .booking-box .btn{width:100%;margin-top:26px;text-align:center}
   .booking-note{font-size:13px;color:var(--muted);text-align:center;margin-top:16px}
+  /* Texto claro sobre as zonas escuras do degradê */
+  .on-dark h2,.on-dark h3,.on-dark .brand{color:#f5efe6}
+  .on-dark p,.on-dark td{color:#ddd2c2}
+  .on-dark td:last-child{color:#f5efe6}
+  .on-dark .eyebrow{color:#cfc8b8}
   /* Footer */
   footer{border-top:1px solid var(--line);padding:36px 0 44px;text-align:center}
   footer .brand{font-size:24px}
@@ -192,7 +200,7 @@
         </div>
       </article>
       <article class="card">
-        <img src="https://images.pexels.com/photos/3865562/pexels-photo-3865562.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Tratamento facial calmante" loading="lazy">
+        <img src="images/facial.jpg" alt="Massagem facial serena" loading="lazy" style="object-position:center 30%">
         <div class="card-body">
           <div class="card-top"><h3>Facial profundo</h3><span class="price">3.000 MT</span></div>
           <p class="dur">60 minutos</p>
@@ -201,7 +209,7 @@
         </div>
       </article>
       <article class="card">
-        <img src="https://images.pexels.com/photos/8842699/pexels-photo-8842699.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Esfoliante natural e toalhas para ritual de corpo" loading="lazy">
+        <img src="images/ritual.jpg" alt="Toalha, óleo e sabão natural para o ritual do corpo" loading="lazy">
         <div class="card-body">
           <div class="card-top"><h3>Ritual do corpo</h3><span class="price">4.200 MT</span></div>
           <p class="dur">90 minutos</p>
@@ -219,7 +227,7 @@
         </div>
       </article>
       <article class="card">
-        <img src="https://images.pexels.com/photos/7507071/pexels-photo-7507071.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Dia de spa partilhado, com toalhas e descanso" loading="lazy">
+        <img src="images/dia-de-spa.jpg" alt="Duas amigas em roupões no dia de spa" loading="lazy" style="object-position:center 25%">
         <div class="card-body">
           <div class="card-top"><h3>Dia de spa</h3><span class="price">7.500 MT</span></div>
           <p class="dur">3 horas · por pessoa</p>
@@ -234,8 +242,8 @@
 <section id="sobre">
   <div class="wrap">
     <div class="about">
-      <img src="https://images.pexels.com/photos/8852874/pexels-photo-8852874.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Toalhas dobradas, óleos essenciais e rolo de jade no spa" loading="lazy">
-      <div>
+      <img src="images/cala.jpg" alt="Flor branca de jarro com gota de água" loading="lazy">
+      <div class="on-dark">
         <p class="eyebrow">Sobre a ALMA</p>
         <h2>Um lugar pequeno, feito para respirar.</h2>
         <p>A ALMA é um spa pequeno na Polana, Maputo. Poucos tratamentos, feitos com tempo e atenção, num espaço claro e silencioso.</p>
@@ -247,7 +255,7 @@
 
 <section>
   <div class="wrap">
-    <div class="info">
+    <div class="info on-dark">
       <div class="info-box">
         <h3>Horário</h3>
         <table>
@@ -265,7 +273,7 @@
 
 <section id="reservar">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head on-dark">
       <p class="eyebrow">Reservas</p>
       <h2>Marca o teu momento</h2>
     </div>
@@ -295,7 +303,7 @@
   </div>
 </section>
 
-<footer>
+<footer class="on-dark">
   <div class="wrap">
     <p class="brand">ALMA</p>
     <p>Polana, Maputo · Só por marcação · © <span id="year">2026</span> ALMA Spa</p>
