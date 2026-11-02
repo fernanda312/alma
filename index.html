@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ALMA — Spa &amp; Bem-estar · Polana, Maputo</title>
-<link rel="icon" href="images/logo.png">
+<link rel="icon" href="images/logo.png?v=2">
 <meta name="description" content="ALMA é um spa e salão minimalista na Polana, Maputo. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -184,6 +184,44 @@
   footer p{font-size:13px;margin-top:10px}
   footer nav{justify-content:center;margin-top:14px}
   .admin-link{font-size:11px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+  #view-servicos,#view-conta,#view-marcacoes,#view-reservar,#view-admin,#view-chat{background:#faf8f3}
+  #menu-btn{display:none;background:transparent;border:1px solid var(--line);font-size:22px;padding:6px 12px;cursor:pointer;color:var(--ink);line-height:1}
+  .chat-fab{position:fixed;right:18px;bottom:18px;z-index:50;width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;border:none;font-size:24px;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.25);display:none;align-items:center;justify-content:center}
+  .chat-fab.show{display:flex}
+  #view-chat{position:fixed;inset:0;z-index:100;background:#faf8f3;overflow:hidden}
+  #view-chat.active{display:flex;flex-direction:column}
+  .chat-head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:#fff}
+  .chat-head img{height:40px;width:auto}
+  .chat-head h3{font-family:"Cormorant Garamond",Georgia,serif;font-size:24px;font-weight:500}
+  .chat-head .sp{flex:1}
+  .chat-head a.wa-link{font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ink);padding:8px 12px;font-weight:600}
+  .chat-head button{font-size:26px;background:none;border:none;cursor:pointer;color:var(--ink);padding:4px 8px;line-height:1}
+  #chat-msgs{flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px}
+  .msg{max-width:82%;padding:10px 14px;border-radius:14px;font-size:15px;line-height:1.5}
+  .msg.mine{align-self:flex-end;background:#1c1b19;color:#fff}
+  .msg.theirs{align-self:flex-start;background:#fff;border:1px solid var(--line)}
+  .msg img{max-width:100%;border-radius:8px;display:block}
+  .msg video{max-width:100%;border-radius:8px}
+  .msg audio{max-width:100%}
+  .msg .ticks{font-size:11px;opacity:.7;display:block;text-align:right;margin-top:4px}
+  .msg .mtime{font-size:11px;opacity:.7;display:block;margin-top:4px}
+  .chat-input{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff;align-items:center}
+  .chat-input input[type=text]{flex:1;padding:12px;border:1px solid var(--line);font:inherit;font-size:15px;min-width:0}
+  .chat-input button{border:none;background:var(--ink);color:#fff;padding:12px 14px;cursor:pointer;font-size:16px}
+  .chat-input button.rec.on{background:#8a3b2a}
+  .chat-input label{cursor:pointer;font-size:20px}
+  .svc-check{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);padding:12px 14px;margin-bottom:10px;background:#fff;cursor:pointer}
+  .svc-check input{margin-top:5px;accent-color:var(--ink);width:auto}
+  .svc-check b{font-size:15px}
+  .svc-check span{font-size:13px;color:var(--muted)}
+  .sugg{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 4px}
+  .sugg button{background:#fff;border:1px solid var(--line);padding:8px 12px;font:inherit;font-size:13px;cursor:pointer}
+  .receipt{border:1px solid var(--line);background:#fff;padding:22px;margin-top:16px}
+  .receipt h4{font-family:"Cormorant Garamond",Georgia,serif;font-size:26px;font-weight:500;margin-bottom:10px}
+  .receipt p,.receipt td{font-size:14px;color:var(--muted)}
+  .receipt table{width:100%;border-collapse:collapse}
+  .receipt td{padding:5px 0}
+  .receipt td:last-child{text-align:right;color:var(--ink)}
   @media (max-width:768px){
     nav{gap:14px;font-size:12px}
     nav a.hide-m{display:none}
@@ -194,14 +232,19 @@
     .about img{aspect-ratio:4/3}
     .box{padding:28px 22px}
     .hero-cta .btn{width:100%}
+    #menu-btn{display:block}
+    header nav{display:none;width:100%;flex-direction:column;align-items:flex-start;gap:0;background:#fff;border:1px solid var(--line);padding:8px 0}
+    header nav.open{display:flex}
+    header nav a{padding:10px 18px;width:100%}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <a href="#inicio" class="brand"><img class="logo-img" src="images/logo.png" alt="ALMA"><span><span id="brand-name">ALMA</span><small>SPA &amp; BEM-ESTAR</small></span></a>
-    <nav>
+    <a href="#inicio" class="brand"><img class="logo-img" src="images/logo.png?v=2" alt="ALMA"><span><span id="brand-name">ALMA</span><small>SPA &amp; BEM-ESTAR</small></span></a>
+    <button id="menu-btn" type="button" aria-label="Menu">☰</button>
+    <nav id="main-nav">
       <a href="#inicio" data-nav="inicio">Início</a>
       <a href="#servicos" data-nav="servicos">Serviços</a>
       <a href="#marcacoes" data-nav="marcacoes">Minhas marcações</a>
@@ -212,14 +255,14 @@
 
 <!-- INÍCIO -->
 <div id="view-inicio" class="view active">
-  <div class="hero-video">
+  <div class="hero-video" id="hero-media">
     <video src="videos/hero.mp4" autoplay muted loop playsinline preload="metadata" poster="images/facial.jpg"></video>
   </div>
   <div class="hero-text">
     <p class="eyebrow">Polana · Maputo</p>
-    <h1>O cuidado que acalma.</h1>
-    <p>Um spa e salão minimalista onde o tempo abranda. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.</p>
-    <div class="hero-cta">
+    <h1 id="hero-title">O cuidado que acalma.</h1>
+    <p id="hero-sub">Um spa e salão minimalista onde o tempo abranda. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.</p>
+    <div class="hero-cta" id="hero-cta">
       <a href="#reservar" class="btn">Agendar consulta</a>
       <a href="#servicos" class="btn outline">Ver todos os serviços</a>
     </div>
@@ -238,15 +281,16 @@
       <div class="center mt"><a href="#servicos" class="btn outline">Ver todos os serviços</a></div>
     </div>
   </section>
+  <div id="custom-sections"></div>
   <section id="sobre">
     <div class="wrap">
       <div class="about">
         <img src="images/cala.jpg" alt="Flor branca de jarro com gota de água" loading="lazy">
         <div class="on-dark">
           <p class="eyebrow">Sobre a ALMA</p>
-          <h2>Um lugar pequeno, feito para respirar.</h2>
-          <p>A ALMA é um spa pequeno na Polana, Maputo. Poucos tratamentos, feitos com tempo e atenção, num espaço claro e silencioso.</p>
-          <p>Os produtos são naturais, as toalhas são aquecidas e cada marcação é só tua — sem salas cheias nem pressa.</p>
+          <h2 id="sobre-title">Um lugar pequeno, feito para respirar.</h2>
+          <p id="sobre-text1">A ALMA é um spa pequeno na Polana, Maputo. Poucos tratamentos, feitos com tempo e atenção, num espaço claro e silencioso.</p>
+          <p id="sobre-text2">Os produtos são naturais, as toalhas são aquecidas e cada marcação é só tua — sem salas cheias nem pressa.</p>
         </div>
       </div>
     </div>
@@ -336,9 +380,27 @@
   </section>
 </div>
 
+<!-- CHAT -->
+<div id="view-chat" class="view">
+  <div class="chat-head">
+    <img id="chat-logo" src="images/logo.png?v=2" alt="ALMA">
+    <h3 id="chat-spa-name">ALMA</h3>
+    <span class="sp"></span>
+    <a class="wa-link" id="chat-wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+    <button id="chat-close" type="button" aria-label="Fechar">×</button>
+  </div>
+  <div id="chat-msgs"></div>
+  <div class="chat-input">
+    <label title="Anexar ficheiro ou vídeo">📎<input id="chat-file" type="file" accept="image/*,video/*,.pdf,.doc,.docx" hidden></label>
+    <button id="chat-rec" class="rec" type="button" title="Gravar áudio">🎤</button>
+    <input id="chat-text" type="text" placeholder="Escreve a tua mensagem…" autocomplete="off">
+    <button id="chat-send" type="button">Enviar</button>
+  </div>
+</div>
+
 <footer class="on-dark">
   <div class="wrap">
-    <img class="logo-img foot-logo" src="images/logo.png" alt="ALMA">
+    <img class="logo-img foot-logo" src="images/logo.png?v=2" alt="ALMA">
     <p class="brand">ALMA</p>
     <p>Polana, Maputo · Só por marcação · © <span id="year">2026</span> ALMA Spa</p>
     <nav>
@@ -353,29 +415,37 @@
 <script>
   // ---------- Dados ----------
   var DEFAULT_SERVICES = [
-    {id:'relaxante', cat:'Massagens', name:'Massagem relaxante', price:2500, dur:60, img:'images/oleo-costas.jpg', desc:'Movimentos lentos e profundos com óleos naturais, para soltar o corpo e acalmar a mente.'},
-    {id:'pedras', cat:'Massagens', name:'Massagem com pedras quentes', price:3800, dur:90, img:'https://images.pexels.com/photos/6187294/pexels-photo-6187294.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pedras aquecidas sobre o corpo para um relaxamento profundo e duradouro.'},
-    {id:'desportiva', cat:'Massagens', name:'Massagem desportiva', price:2800, dur:60, img:'images/oleo-cabaca.jpg', desc:'Para músculos cansados e tensos. Recupera o corpo depois do esforço.'},
-    {id:'ritual', cat:'Massagens', name:'Ritual do corpo', price:4200, dur:90, img:'images/ritual.jpg', desc:'Esfoliação suave seguida de hidratação completa com óleos naturais.'},
-    {id:'dia', cat:'Massagens', name:'Dia de spa', price:7500, dur:180, img:'images/dia-de-spa.jpg', desc:'O ritual completo: massagem, facial, chá e descanso. O dia é todo teu.'},
-    {id:'facial', cat:'Pele', name:'Facial profundo', price:3000, dur:60, img:'images/facial.jpg', desc:'Limpeza, massagem facial e hidratação. Pele limpa, luminosa e calma.'},
-    {id:'hidratacao', cat:'Pele', name:'Hidratação facial', price:2200, dur:45, img:'https://images.pexels.com/photos/6724510/pexels-photo-6724510.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Hidratação intensa com massagem suave. Para pele seca ou cansada.'},
-    {id:'limpeza', cat:'Pele', name:'Limpeza de pele com argila', price:2800, dur:60, img:'https://images.pexels.com/photos/7479667/pexels-photo-7479667.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Máscara de argila e limpeza profunda. Pele renovada e sem brilho.'},
-    {id:'laser', cat:'Pele', name:'Tratamento a laser', price:4500, dur:45, img:'https://images.pexels.com/photos/7446683/pexels-photo-7446683.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sessão de laser para uma pele mais lisa e uniforme, com avaliação incluída.'},
-    {id:'manicure', cat:'Mãos e pés', name:'Manicure', price:800, dur:45, img:'https://images.pexels.com/photos/14741511/pexels-photo-14741511.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cuidado das unhas e das mãos, com verniz à tua escolha.'},
-    {id:'pedicure', cat:'Mãos e pés', name:'Pedicure', price:1000, dur:60, img:'https://images.pexels.com/photos/19695950/pexels-photo-19695950.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pés cuidados, unhas limpas e verniz, com massagem relaxante no fim.'},
-    {id:'gel', cat:'Mãos e pés', name:'Unhas de gel', price:1800, dur:90, img:'https://images.pexels.com/photos/5681800/pexels-photo-5681800.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Unhas de gel com brilho duradouro e acabamento perfeito.'},
-    {id:'depilacao', cat:'Depilação', name:'Depilação — perna completa', price:1200, dur:45, img:'https://images.pexels.com/photos/5938269/pexels-photo-5938269.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Depilação completa das pernas, com hidratação no fim.'},
-    {id:'sobrancelhas', cat:'Depilação', name:'Design de sobrancelhas', price:500, dur:20, img:'https://images.pexels.com/photos/9163306/pexels-photo-9163306.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sobrancelhas desenhadas à medida do teu rosto.'},
-    {id:'lavagem', cat:'Cabelo', name:'Lavagem + escova', price:900, dur:45, img:'https://images.pexels.com/photos/11360227/pexels-photo-11360227.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Lavagem com massagem ao couro cabeludo e escova final.'},
-    {id:'trancas', cat:'Cabelo', name:'Tranças', price:3500, dur:180, img:'https://images.pexels.com/photos/7275385/pexels-photo-7275385.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Tranças feitas com calma e acabamento limpo, no estilo que escolheres.'},
-    {id:'coloracao', cat:'Cabelo', name:'Coloração capilar', price:2200, dur:90, img:'https://images.pexels.com/photos/7389083/pexels-photo-7389083.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cor e brilho, com tratamento para proteger o cabelo.'},
-    {id:'maq-dia', cat:'Maquilhagem', name:'Maquilhagem de dia', price:1500, dur:45, img:'https://images.pexels.com/photos/12402184/pexels-photo-12402184.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem leve e natural para o dia a dia.'},
-    {id:'maq-festa', cat:'Maquilhagem', name:'Maquilhagem de festa', price:2500, dur:60, img:'https://images.pexels.com/photos/33927084/pexels-photo-33927084.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem completa e duradoura para festas e ocasiões especiais.'}
+    {id:'relaxante', cat:'Massagens', name:'Massagem relaxante', price:2500, dur:60, img:'images/oleo-costas.jpg', desc:'Movimentos lentos e profundos com óleos naturais, para soltar o corpo e acalmar a mente.', fee:500},
+    {id:'pedras', cat:'Massagens', name:'Massagem com pedras quentes', price:3800, dur:90, img:'https://images.pexels.com/photos/6187294/pexels-photo-6187294.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pedras aquecidas sobre o corpo para um relaxamento profundo e duradouro.', fee:800},
+    {id:'desportiva', cat:'Massagens', name:'Massagem desportiva', price:2800, dur:60, img:'images/oleo-cabaca.jpg', desc:'Para músculos cansados e tensos. Recupera o corpo depois do esforço.', fee:500},
+    {id:'ritual', cat:'Massagens', name:'Ritual do corpo', price:4200, dur:90, img:'images/ritual.jpg', desc:'Esfoliação suave seguida de hidratação completa com óleos naturais.', fee:800},
+    {id:'dia', cat:'Massagens', name:'Dia de spa', price:7500, dur:180, img:'images/dia-de-spa.jpg', desc:'O ritual completo: massagem, facial, chá e descanso. O dia é todo teu.', fee:1500},
+    {id:'facial', cat:'Pele', name:'Facial profundo', price:3000, dur:60, img:'images/facial.jpg', desc:'Limpeza, massagem facial e hidratação. Pele limpa, luminosa e calma.', fee:500},
+    {id:'hidratacao', cat:'Pele', name:'Hidratação facial', price:2200, dur:45, img:'https://images.pexels.com/photos/6724510/pexels-photo-6724510.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Hidratação intensa com massagem suave. Para pele seca ou cansada.', fee:400},
+    {id:'limpeza', cat:'Pele', name:'Limpeza de pele com argila', price:2800, dur:60, img:'https://images.pexels.com/photos/7479667/pexels-photo-7479667.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Máscara de argila e limpeza profunda. Pele renovada e sem brilho.', fee:500},
+    {id:'laser', cat:'Pele', name:'Tratamento a laser', price:4500, dur:45, img:'https://images.pexels.com/photos/7446683/pexels-photo-7446683.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sessão de laser para uma pele mais lisa e uniforme, com avaliação incluída.', fee:1000},
+    {id:'manicure', cat:'Mãos e pés', name:'Manicure', price:800, dur:45, img:'https://images.pexels.com/photos/14741511/pexels-photo-14741511.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cuidado das unhas e das mãos, com verniz à tua escolha.', fee:200},
+    {id:'pedicure', cat:'Mãos e pés', name:'Pedicure', price:1000, dur:60, img:'https://images.pexels.com/photos/19695950/pexels-photo-19695950.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Pés cuidados, unhas limpas e verniz, com massagem relaxante no fim.', fee:200},
+    {id:'gel', cat:'Mãos e pés', name:'Unhas de gel', price:1800, dur:90, img:'https://images.pexels.com/photos/5681800/pexels-photo-5681800.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Unhas de gel com brilho duradouro e acabamento perfeito.', fee:400},
+    {id:'depilacao', cat:'Depilação', name:'Depilação — perna completa', price:1200, dur:45, img:'https://images.pexels.com/photos/5938269/pexels-photo-5938269.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Depilação completa das pernas, com hidratação no fim.', fee:300},
+    {id:'sobrancelhas', cat:'Depilação', name:'Design de sobrancelhas', price:500, dur:20, img:'https://images.pexels.com/photos/9163306/pexels-photo-9163306.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Sobrancelhas desenhadas à medida do teu rosto.', fee:200},
+    {id:'lavagem', cat:'Cabelo', name:'Lavagem + escova', price:900, dur:45, img:'https://images.pexels.com/photos/11360227/pexels-photo-11360227.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Lavagem com massagem ao couro cabeludo e escova final.', fee:200},
+    {id:'trancas', cat:'Cabelo', name:'Tranças', price:3500, dur:180, img:'https://images.pexels.com/photos/7275385/pexels-photo-7275385.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Tranças feitas com calma e acabamento limpo, no estilo que escolheres.', fee:800},
+    {id:'coloracao', cat:'Cabelo', name:'Coloração capilar', price:2200, dur:90, img:'https://images.pexels.com/photos/7389083/pexels-photo-7389083.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Cor e brilho, com tratamento para proteger o cabelo.', fee:500},
+    {id:'maq-dia', cat:'Maquilhagem', name:'Maquilhagem de dia', price:1500, dur:45, img:'https://images.pexels.com/photos/33951060/pexels-photo-33951060.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem leve e natural para o dia a dia.', fee:300},
+    {id:'maq-festa', cat:'Maquilhagem', name:'Maquilhagem de festa', price:2500, dur:60, img:'https://images.pexels.com/photos/33927084/pexels-photo-33927084.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Maquilhagem completa e duradoura para festas e ocasiões especiais.', fee:500},
+    {id:'aroma', cat:'Massagens', name:'Aromaterapia', price:3000, dur:60, img:'https://images.pexels.com/photos/19666192/pexels-photo-19666192.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Massagem suave com óleos essenciais escolhidos para ti. Calma profunda.', fee:600},
+    {id:'ventosas', cat:'Massagens', name:'Ventosaterapia', price:2800, dur:45, img:'https://images.pexels.com/photos/8313254/pexels-photo-8313254.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Ventosaterapia para soltar tensões e activar a circulação.', fee:500},
+    {id:'reflexo', cat:'Massagens', name:'Reflexologia podal', price:1800, dur:45, img:'https://images.pexels.com/photos/19695942/pexels-photo-19695942.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Massagem nos pontos dos pés para equilibrar o corpo inteiro.', fee:400},
+    {id:'esfoliacao', cat:'Pele', name:'Esfoliação corporal', price:2600, dur:60, img:'https://images.pexels.com/photos/27860842/pexels-photo-27860842.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Esfoliação completa do corpo seguida de hidratação. Pele nova.', fee:500},
+    {id:'trat-capilar', cat:'Cabelo', name:'Tratamento capilar profundo', price:2000, dur:60, img:'https://images.pexels.com/photos/7269512/pexels-photo-7269512.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Máscara e cuidado profundo para devolver força e brilho ao cabelo.', fee:400},
+    {id:'penteados', cat:'Cabelo', name:'Penteados', price:1200, dur:60, img:'https://images.pexels.com/photos/10398045/pexels-photo-10398045.jpeg?auto=compress&cs=tinysrgb&w=900', desc:'Penteados para o dia a dia ou ocasiões especiais, ao teu gosto.', fee:300}
   ];
-  var DEFAULT_SETTINGS = {spaName:'ALMA', whatsapp:'258840000000', hours:'Seg–Sáb 9h – 19h · Dom 10h – 16h', location:'Polana, Maputo'};
+  var DEFAULT_SETTINGS = {spaName:'ALMA', whatsapp:'258840000000', hours:'Seg–Sáb 9h – 19h · Dom 10h – 16h', location:'Polana, Maputo', logo:'', heroTitle:'O cuidado que acalma.', heroSub:'Um spa e salão minimalista onde o tempo abranda. Massagens, pele, unhas, cabelo e maquilhagem, só por marcação.', heroBtn1:'Agendar consulta', heroBtn2:'Ver todos os serviços', heroMedia:'video', heroPoster:'', heroImage:'', sobreTitle:'Um lugar pequeno, feito para respirar.', sobreText1:'A ALMA é um spa pequeno na Polana, Maputo. Poucos tratamentos, feitos com tempo e atenção, num espaço claro e silencioso.', sobreText2:'Os produtos são naturais, as toalhas são aquecidas e cada marcação é só tua — sem salas cheias nem pressa.', extraButtons:[], customSections:[]};
   var TIME_SLOTS = ['9h00','10h00','11h00','13h00','14h00','15h00','16h00','17h00','18h00'];
   var pendingService = null;
+  var payForId = null;
+  var adminChatEmail = null;
   var pendingPhoto = {};
 
   // ---------- Utilitários ----------
@@ -397,7 +467,6 @@
   }
   function save(key, val){ try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) {} }
   function getServices(){ var s = load('alma_services', null); return s && s.length ? s : DEFAULT_SERVICES.slice(); }
-  function getSettings(){ var s = load('alma_settings', null); return s ? s : DEFAULT_SETTINGS; }
   function getUsers(){ return load('alma_users', []); }
   function getBookings(){ return load('alma_bookings', []); }
   function getSession(){ return load('alma_session', null); }
@@ -422,17 +491,69 @@
   function applySettings(){
     var st = getSettings();
     document.getElementById('brand-name').textContent = st.spaName;
+    var logoSrc = st.logo || 'images/logo.png?v=2';
+    document.querySelectorAll('.logo-img').forEach(function(im){ im.src = logoSrc; });
+    var fav = document.querySelector('link[rel="icon"]');
+    if (fav) fav.href = logoSrc;
     var h1 = document.getElementById('info-hours-1');
     var h2 = document.getElementById('info-hours-2');
     if (h1) h1.textContent = st.hours;
     if (h2) h2.textContent = st.hours;
     var loc = document.getElementById('info-location');
     if (loc) loc.innerHTML = esc(st.location) + '.<br>Só por marcação. Chega 10 minutos antes para um chá de boas-vindas.';
+    var ht = document.getElementById('hero-title'); if (ht) ht.textContent = st.heroTitle;
+    var hs = document.getElementById('hero-sub'); if (hs) hs.textContent = st.heroSub;
+    var hm = document.getElementById('hero-media');
+    if (hm) {
+      if (st.heroMedia === 'image' && st.heroImage) {
+        hm.innerHTML = '<img src="' + esc(st.heroImage) + '" alt="" style="width:100%;height:62vh;min-height:420px;object-fit:contain;display:block">';
+      } else {
+        hm.innerHTML = '<video src="videos/hero.mp4" autoplay muted loop playsinline preload="metadata" poster="' + esc(st.heroPoster || 'images/facial.jpg') + '"></video>';
+      }
+    }
+    var hc = document.getElementById('hero-cta');
+    if (hc) {
+      var btns = '<a href="#reservar" class="btn">' + esc(st.heroBtn1) + '</a>' +
+        '<a href="#servicos" class="btn outline">' + esc(st.heroBtn2) + '</a>';
+      (st.extraButtons || []).forEach(function(b){
+        var ext = (b.link.indexOf('http://') === 0 || b.link.indexOf('https://') === 0) ? ' target="_blank" rel="noopener"' : '';
+        btns += ' <a href="' + esc(b.link) + '" class="btn outline"' + ext + '>' + esc(b.label) + '</a>';
+      });
+      hc.innerHTML = btns;
+    }
+    var st1 = document.getElementById('sobre-title'); if (st1) st1.textContent = st.sobreTitle;
+    var sx1 = document.getElementById('sobre-text1'); if (sx1) sx1.textContent = st.sobreText1;
+    var sx2 = document.getElementById('sobre-text2'); if (sx2) sx2.textContent = st.sobreText2;
+    var cs = document.getElementById('custom-sections');
+    if (cs) {
+      cs.innerHTML = (st.customSections || []).map(function(s){
+        return '<section><div class="wrap"><div class="sec-head" style="text-align:left;margin-bottom:24px"><h2>' + esc(s.title) + '</h2></div>' +
+          (s.img ? '<p style="margin-bottom:18px"><img src="' + esc(s.img) + '" alt="" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block"></p>' : '') +
+          '<p>' + esc(s.text) + '</p></div></section>';
+      }).join('');
+    }
+    var cn = document.getElementById('chat-spa-name'); if (cn) cn.textContent = st.spaName;
+    var cl = document.getElementById('chat-logo'); if (cl) cl.src = logoSrc;
+    var cw = document.getElementById('chat-wa'); if (cw) cw.href = 'https://wa.me/' + st.whatsapp;
+  }
+  function saveSettingsPatch(patch){
+    var st = getSettings();
+    for (var k in patch) st[k] = patch[k];
+    save('alma_settings', st);
+    applySettings();
+  }
+  function getSettings(){
+    var s = load('alma_settings', null);
+    if (!s) return DEFAULT_SETTINGS;
+    var out = {};
+    for (var k in DEFAULT_SETTINGS) out[k] = DEFAULT_SETTINGS[k];
+    for (var k2 in s) out[k2] = s[k2];
+    return out;
   }
 
   // ---------- Router ----------
   function showView(id){
-    var views = ['inicio','servicos','conta','marcacoes','reservar','admin'];
+    var views = ['inicio','servicos','conta','marcacoes','reservar','admin','chat'];
     if (views.indexOf(id) === -1) id = 'inicio';
     views.forEach(function(v){
       var el = document.getElementById('view-' + v);
@@ -447,6 +568,9 @@
     if (id === 'marcacoes') renderMarcacoes();
     if (id === 'reservar') renderReservar();
     if (id === 'admin') renderAdmin();
+    if (id === 'chat') renderChat();
+    var mn = document.getElementById('main-nav');
+    if (mn) mn.classList.remove('open');
     window.scrollTo(0, 0);
   }
   window.addEventListener('hashchange', function(){
@@ -470,6 +594,7 @@
     } else {
       area.innerHTML = '<a href="#conta">Entrar</a>';
     }
+    renderChatFab();
   }
 
   // ---------- Início + Serviços ----------
@@ -618,8 +743,37 @@
   function waLinkFor(bk){
     var st = getSettings();
     var msg = 'Olá ' + st.spaName + ', quero confirmar a minha marcação: ' + bk.serviceName +
-      ', no dia ' + bk.date + ', às ' + bk.time + '. Nome: ' + bk.name + '.';
+      ', no dia ' + bk.date + ', às ' + bk.time + '. Taxa: ' + fmtPrice(bk.fee || 0) + '. Nome: ' + bk.name + '.';
     return 'https://wa.me/' + st.whatsapp + '?text=' + encodeURIComponent(msg);
+  }
+  function receiptHTML(bk){
+    var rows = '';
+    var services = getServices();
+    if (bk.serviceIds && bk.serviceIds.length) {
+      bk.serviceIds.forEach(function(id){
+        for (var i = 0; i < services.length; i++) {
+          if (services[i].id === id) rows += '<tr><td>' + esc(services[i].name) + '</td><td>' + fmtPrice(services[i].price) + '</td></tr>';
+        }
+      });
+    } else {
+      rows = '<tr><td>' + esc(bk.serviceName) + '</td><td>' + fmtPrice(bk.price) + '</td></tr>';
+    }
+    return '<div class="receipt"><h4>Recibo</h4>' +
+      '<p>Nº ' + esc(bk.id) + ' · ' + esc(bk.name) + ' · ' + esc(bk.date) + ' às ' + esc(bk.time) + '</p>' +
+      '<table style="margin-top:10px">' + rows +
+      '<tr><td>Taxa de marcação (paga)</td><td>' + fmtPrice(bk.fee || 0) + '</td></tr>' +
+      '<tr><td><b>Total</b></td><td><b>' + fmtPrice(bk.price) + '</b></td></tr></table>' +
+      '<p style="margin-top:10px">Pagamento confirmado. Guarda este recibo.</p></div>';
+  }
+  function payPanelHTML(bk){
+    return '<div class="box" style="margin-bottom:22px"><p class="eyebrow">Pagamento</p>' +
+      '<h3 style="font-family:Cormorant Garamond,Georgia,serif;font-size:28px;font-weight:500;margin-top:8px">' + esc(bk.serviceName) + '</h3>' +
+      '<p style="color:var(--muted)">' + esc(bk.date) + ' às ' + esc(bk.time) + '</p>' +
+      '<p style="margin-top:12px"><b>Taxa de marcação a pagar:</b> ' + fmtPrice(bk.fee || 0) + '<br>' +
+      '<b>Total do serviço:</b> ' + fmtPrice(bk.price) + ' (o restante paga-se no local, após o serviço)</p>' +
+      '<p class="note" style="text-align:left">O pagamento por M-Pesa está a ser ligado. A tua marcação fica guardada como “Aguarda pagamento”. Assim que o pagamento for confirmado, o recibo aparece aqui automaticamente.</p>' +
+      '<div class="mt"><a class="btn" href="' + waLinkFor(bk) + '" target="_blank" rel="noopener">Confirmar por WhatsApp</a></div>' +
+      '<div class="mt"><button class="btn outline" type="button" id="pay-close">Fechar</button></div></div>';
   }
   function renderMarcacoes(){
     var area = document.getElementById('marcacoes-area');
@@ -636,16 +790,28 @@
         '<div class="center mt"><a class="btn" href="#reservar">Agendar consulta</a></div></div>';
       return;
     }
-    area.innerHTML = all.map(function(b){
+    var html = '';
+    if (payForId) {
+      var pb = null;
+      getBookings().forEach(function(b){ if (b.id === payForId) pb = b; });
+      if (pb) html += payPanelHTML(pb);
+    }
+    html += all.map(function(b){
       var canCancel = b.status !== 'Cancelada';
+      var paid = b.payStatus === 'Pago';
       return '<div class="bk-row"><div>' +
-        '<h4>' + esc(b.serviceName) + ' ' + statusBadge(b.status) + '</h4>' +
-        '<p>' + esc(b.date) + ' às ' + esc(b.time) + ' · ' + fmtPrice(b.price) + ' · ' + esc(b.name) + '</p>' +
+        '<h4>' + esc(b.serviceName) + ' ' + statusBadge(b.status) + ' ' + (paid ? '<span class="badge confirmed">Pago</span>' : '<span class="badge pending">Aguarda pagamento</span>') + '</h4>' +
+        '<p>' + esc(b.date) + ' às ' + esc(b.time) + ' · ' + fmtPrice(b.price) + ' · taxa ' + fmtPrice(b.fee || 0) + ' · ' + esc(b.name) + '</p>' +
+        (paid ? receiptHTML(b) : '') +
         '</div><div class="row-actions">' +
         (canCancel ? '<button class="btn small outline" data-cancel="' + esc(b.id) + '" type="button">Cancelar</button>' : '') +
+        (!paid && canCancel ? '<button class="btn small" data-pay="' + esc(b.id) + '" type="button">Pagar taxa</button>' : '') +
         '<a class="btn small" href="' + waLinkFor(b) + '" target="_blank" rel="noopener">Confirmar por WhatsApp</a>' +
         '</div></div>';
     }).join('');
+    area.innerHTML = html;
+    var pc = document.getElementById('pay-close');
+    if (pc) pc.addEventListener('click', function(){ payForId = null; renderMarcacoes(); });
     area.querySelectorAll('[data-cancel]').forEach(function(btn){
       btn.addEventListener('click', function(){
         var allB = getBookings();
@@ -656,8 +822,13 @@
         renderMarcacoes();
       });
     });
+    area.querySelectorAll('[data-pay]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        payForId = btn.getAttribute('data-pay');
+        renderMarcacoes();
+      });
+    });
   }
-
   // ---------- Reservar ----------
   function renderReservar(){
     var area = document.getElementById('reservar-area');
@@ -668,14 +839,53 @@
       return;
     }
     var services = getServices();
+    var selected = [];
+    if (pendingService) selected.push(pendingService);
     var today = new Date().toISOString().slice(0, 10);
+    function svcById(id){
+      for (var i = 0; i < services.length; i++) { if (services[i].id === id) return services[i]; }
+      return null;
+    }
+    function totals(){
+      var p = 0, f = 0, d = 0;
+      selected.forEach(function(id){ var s = svcById(id); if (s) { p += s.price; f += (s.fee || 0); d += s.dur; } });
+      return {price: p, fee: f, dur: d};
+    }
+    function suggList(){
+      var cats = {};
+      selected.forEach(function(id){ var s = svcById(id); if (s) cats[s.cat || 'Outros'] = true; });
+      return services.filter(function(s){ return selected.indexOf(s.id) === -1 && cats[s.cat || 'Outros']; }).slice(0, 4);
+    }
+    function summaryHTML(){
+      var t = totals();
+      if (!selected.length) return '<p style="color:var(--muted)">Escolhe pelo menos um serviço.</p>';
+      var lines = selected.map(function(id){
+        var s = svcById(id);
+        return esc(s.name) + ' — ' + fmtPrice(s.price) + ' · taxa ' + fmtPrice(s.fee || 0);
+      }).join('<br>');
+      return '<p>' + lines + '</p>' +
+        '<p style="margin-top:10px"><b>Total dos serviços:</b> ' + fmtPrice(t.price) + ' · <b>Duração total:</b> ' + fmtDur(t.dur) + '<br>' +
+        '<b>Taxa de marcação:</b> ' + fmtPrice(t.fee) + '</p>' +
+        '<p class="note" style="text-align:left">A taxa de marcação conta para o pagamento final do serviço — não é um custo extra. Se não puderes vir, desmarca em Minhas marcações.</p>';
+    }
+    function suggHTML(){
+      var list = suggList();
+      if (!list.length) return '';
+      return '<p style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin:18px 0 6px">Também podes gostar</p>' +
+        '<div class="sugg">' + list.map(function(s){
+          return '<button type="button" data-add-sugg="' + esc(s.id) + '">+ ' + esc(s.name) + ' · ' + fmtPrice(s.price) + '</button>';
+        }).join('') + '</div>';
+    }
     area.innerHTML = '<div class="box">' +
+      '<p class="eyebrow">Escolhe os serviços</p>' +
+      '<div id="bk-list" style="margin-top:14px">' + services.map(function(s){
+        var checked = selected.indexOf(s.id) !== -1 ? ' checked' : '';
+        return '<label class="svc-check"><input type="checkbox" value="' + esc(s.id) + '"' + checked + '>' +
+          '<span><b>' + esc(s.name) + '</b><br><span>' + fmtPrice(s.price) + ' · ' + fmtDur(s.dur) + ' · taxa ' + fmtPrice(s.fee || 0) + '</span></span></label>';
+      }).join('') + '</div>' +
+      '<div id="bk-sugg">' + suggHTML() + '</div>' +
+      '<div id="bk-summary" style="border-top:1px solid var(--line);margin-top:18px;padding-top:14px">' + summaryHTML() + '</div>' +
       '<form id="form-book">' +
-      '<label for="bk-service">Tratamento</label>' +
-      '<select id="bk-service">' + services.map(function(s){
-        return '<option value="' + esc(s.id) + '"' + (pendingService === s.id ? ' selected' : '') + '>' +
-          esc(s.name) + ' — ' + fmtPrice(s.price) + ' · ' + fmtDur(s.dur) + '</option>';
-      }).join('') + '</select>' +
       '<label for="bk-name">Nome</label>' +
       '<input id="bk-name" type="text" value="' + esc(u.name) + '" autocomplete="name">' +
       '<label for="bk-date">Data</label>' +
@@ -686,21 +896,45 @@
       '</form>' +
       '<p class="note">A marcação fica guardada na tua conta como pendente. Podes cancelá-la em Minhas marcações.</p>' +
       '</div>';
+    function bindSugg(){
+      area.querySelectorAll('[data-add-sugg]').forEach(function(btn){
+        btn.addEventListener('click', function(){
+          var id = btn.getAttribute('data-add-sugg');
+          if (selected.indexOf(id) === -1) selected.push(id);
+          var cb = area.querySelector('.svc-check input[value="' + id + '"]');
+          if (cb) cb.checked = true;
+          refresh();
+        });
+      });
+    }
+    function refresh(){
+      document.getElementById('bk-summary').innerHTML = summaryHTML();
+      document.getElementById('bk-sugg').innerHTML = suggHTML();
+      bindSugg();
+    }
+    bindSugg();
+    area.querySelectorAll('.svc-check input').forEach(function(cb){
+      cb.addEventListener('change', function(){
+        var id = cb.value;
+        if (cb.checked) { if (selected.indexOf(id) === -1) selected.push(id); }
+        else { selected = selected.filter(function(x){ return x !== id; }); }
+        refresh();
+      });
+    });
     document.getElementById('form-book').addEventListener('submit', function(e){
       e.preventDefault();
-      var sid = document.getElementById('bk-service').value;
       var name = document.getElementById('bk-name').value.trim();
       var date = document.getElementById('bk-date').value;
       var time = document.getElementById('bk-time').value;
+      if (!selected.length) { alert('Escolhe pelo menos um serviço.'); return; }
       if (!name || !date) { alert('Escreve o teu nome e escolhe a data, por favor.'); return; }
-      var svc = null;
-      services.forEach(function(s){ if (s.id === sid) svc = s; });
-      if (!svc) return;
+      var t = totals();
+      var names = selected.map(function(id){ return svcById(id).name; }).join(' + ');
       var bk = {
         id: 'ALMA-' + Date.now().toString(36).toUpperCase(),
-        email: u.email, name: name, serviceId: sid, serviceName: svc.name,
-        price: svc.price, date: date, time: time, status: 'Pendente',
-        created: new Date().toISOString()
+        email: u.email, name: name, serviceIds: selected.slice(), serviceName: names,
+        price: t.price, fee: t.fee, date: date, time: time, status: 'Pendente',
+        payStatus: 'Aguarda pagamento', created: new Date().toISOString()
       };
       var all = getBookings();
       all.push(bk);
@@ -709,12 +943,18 @@
       area.innerHTML = '<div class="box"><div class="notice ok">Marcação guardada com sucesso.</div>' +
         '<h3 style="font-family:Cormorant Garamond,Georgia,serif;font-size:30px;font-weight:500">' + esc(bk.serviceName) + '</h3>' +
         '<p style="color:var(--muted)">' + esc(bk.date) + ' às ' + esc(bk.time) + ' · ' + fmtPrice(bk.price) + ' · ' + esc(bk.name) + '</p>' +
-        '<div class="mt"><a class="btn" href="#marcacoes">Ver as minhas marcações</a></div>' +
+        '<p style="margin-top:12px"><b>Taxa de marcação:</b> ' + fmtPrice(bk.fee) + '</p>' +
+        '<p class="note" style="text-align:left">A taxa conta para o pagamento final do serviço — não é um custo extra.</p>' +
+        '<div class="mt"><button class="btn" type="button" id="bk-pay-now">Pagar taxa de ' + fmtPrice(bk.fee) + '</button></div>' +
+        '<div class="mt"><a class="btn outline" href="#marcacoes">Ver as minhas marcações</a></div>' +
         '<div class="mt"><a class="btn outline" href="' + waLinkFor(bk) + '" target="_blank" rel="noopener">Confirmar por WhatsApp</a></div>' +
         '</div>';
+      document.getElementById('bk-pay-now').addEventListener('click', function(){
+        payForId = bk.id;
+        go('marcacoes');
+      });
     });
   }
-
   // ---------- Admin ----------
   function renderAdmin(){
     var area = document.getElementById('admin-area');
@@ -734,24 +974,26 @@
       '<button class="btn small on" data-tab="svc" type="button">Serviços</button>' +
       '<button class="btn small" data-tab="bk" type="button">Marcações</button>' +
       '<button class="btn small" data-tab="cl" type="button">Clientes</button>' +
+      '<button class="btn small" data-tab="chat" type="button">Conversas</button>' +
+      '<button class="btn small" data-tab="pg" type="button">Página</button>' +
       '<button class="btn small" data-tab="st" type="button">Definições</button>' +
       '</div>' +
       '<div id="admin-tab-svc"></div>' +
       '<div id="admin-tab-bk" style="display:none"></div>' +
       '<div id="admin-tab-cl" style="display:none"></div>' +
+      '<div id="admin-tab-chat" style="display:none"></div>' +
+      '<div id="admin-tab-pg" style="display:none"></div>' +
       '<div id="admin-tab-st" style="display:none"></div>';
     area.querySelectorAll('[data-tab]').forEach(function(btn){
       btn.addEventListener('click', function(){
-        area.querySelectorAll('[data-tab]').forEach(function(b){ b.classList.remove('on'); });
-        btn.classList.add('on');
-        ['svc','bk','cl','st'].forEach(function(t){
-          document.getElementById('admin-tab-' + t).style.display = (t === btn.getAttribute('data-tab')) ? 'block' : 'none';
-        });
+        switchAdminTab(btn.getAttribute('data-tab'));
       });
     });
     renderAdminServices();
     renderAdminBookings();
     renderAdminClients();
+    renderAdminChats();
+    renderAdminPage();
     renderAdminSettings();
   }
   function renderAdminServices(){
@@ -768,6 +1010,7 @@
         '<label>Categoria</label><input type="text" data-field="cat" data-id="' + esc(s.id) + '" value="' + esc(s.cat || '') + '">' +
         '<label>Preço (MT)</label><input type="number" min="0" data-field="price" data-id="' + esc(s.id) + '" value="' + esc(s.price) + '">' +
         '<label>Duração (minutos)</label><input type="number" min="15" data-field="dur" data-id="' + esc(s.id) + '" value="' + esc(s.dur) + '">' +
+        '<label>Taxa de marcação (MT)</label><input type="number" min="0" data-field="fee" data-id="' + esc(s.id) + '" value="' + esc(s.fee || 0) + '">' +
         '<label>Descrição</label><textarea rows="2" data-field="desc" data-id="' + esc(s.id) + '">' + esc(s.desc) + '</textarea>' +
         '<button class="btn small" type="button" data-save-svc="' + esc(s.id) + '">Guardar alterações</button> ' +
         '<button class="btn small danger" type="button" data-del-svc="' + esc(s.id) + '">Apagar serviço</button>' +
@@ -778,6 +1021,7 @@
     '<label>Categoria</label><input type="text" id="new-cat" placeholder="Ex.: Massagens">' +
     '<label>Preço (MT)</label><input type="number" min="0" id="new-price">' +
     '<label>Duração (minutos)</label><input type="number" min="15" id="new-dur" value="60">' +
+    '<label>Taxa de marcação (MT)</label><input type="number" min="0" id="new-fee" value="300">' +
     '<label>Descrição</label><textarea rows="2" id="new-desc"></textarea>' +
     '<label>Foto (por ficheiro)</label><input type="file" accept="image/*" id="new-photo">' +
     '<button class="btn small" type="button" id="add-service">Adicionar serviço</button></div>';
@@ -801,7 +1045,7 @@
           if (s.id !== id) return;
           el.querySelectorAll('[data-id="' + id + '"]').forEach(function(inp){
             var f = inp.getAttribute('data-field');
-            if (f === 'price' || f === 'dur') s[f] = parseInt(inp.value, 10) || 0;
+            if (f === 'price' || f === 'dur' || f === 'fee') s[f] = parseInt(inp.value, 10) || 0;
             else s[f] = inp.value;
           });
           if (pendingPhoto[id]) { s.img = pendingPhoto[id]; delete pendingPhoto[id]; }
@@ -824,12 +1068,13 @@
       var cat = document.getElementById('new-cat').value.trim() || 'Outros';
       var price = parseInt(document.getElementById('new-price').value, 10);
       var dur = parseInt(document.getElementById('new-dur').value, 10) || 60;
+      var fee = parseInt(document.getElementById('new-fee').value, 10) || 0;
       var desc = document.getElementById('new-desc').value.trim();
       if (!name || !price) { alert('Escreve o nome e o preço do serviço.'); return; }
       var services = getServices();
       var file = document.getElementById('new-photo').files[0];
       function finish(img){
-        services.push({id:'svc-' + Date.now(), cat:cat, name:name, price:price, dur:dur, desc:desc, img:img});
+        services.push({id:'svc-' + Date.now(), cat:cat, name:name, price:price, dur:dur, fee:fee, desc:desc, img:img});
         save('alma_services', services);
         renderAdminServices();
       }
@@ -848,14 +1093,21 @@
     var all = getBookings();
     if (!all.length) { el.innerHTML = '<div class="admin-card"><p>Ainda não há marcações.</p></div>'; return; }
     el.innerHTML = all.map(function(b){
-      return '<div class="admin-card"><h4>' + esc(b.serviceName) + ' ' + statusBadge(b.status) + '</h4>' +
+      var paid = b.payStatus === 'Pago';
+      return '<div class="admin-card"><h4>' + esc(b.serviceName) + ' ' + statusBadge(b.status) + ' ' + (paid ? '<span class="badge confirmed">Pago</span>' : '<span class="badge pending">Aguarda pagamento</span>') + '</h4>' +
         '<p style="color:var(--muted);font-size:14px">' + esc(b.name) + ' · ' + esc(b.email) + '<br>' +
-        esc(b.date) + ' às ' + esc(b.time) + ' · ' + fmtPrice(b.price) + '</p>' +
+        esc(b.date) + ' às ' + esc(b.time) + ' · total ' + fmtPrice(b.price) + ' · taxa ' + fmtPrice(b.fee || 0) + '</p>' +
         '<label>Estado</label>' +
         '<select data-bk-status="' + esc(b.id) + '">' +
         ['Pendente','Confirmada','Cancelada'].map(function(st){
           return '<option' + (st === b.status ? ' selected' : '') + '>' + st + '</option>';
         }).join('') + '</select>' +
+        '<label>Pagamento</label>' +
+        '<select data-bk-pay="' + esc(b.id) + '">' +
+        ['Aguarda pagamento','Pago'].map(function(ps){
+          return '<option' + (ps === (b.payStatus || 'Aguarda pagamento') ? ' selected' : '') + '>' + ps + '</option>';
+        }).join('') + '</select>' +
+        '<p style="font-size:13px;color:var(--muted);margin-top:10px">Ao marcar “Pago”, o recibo aparece automaticamente para o cliente em Minhas marcações.</p>' +
         '<button class="btn small danger" type="button" data-bk-del="' + esc(b.id) + '" style="margin-top:12px">Apagar marcação</button>' +
         '</div>';
     }).join('');
@@ -864,6 +1116,16 @@
         var allB = getBookings();
         allB.forEach(function(b){
           if (b.id === sel.getAttribute('data-bk-status')) b.status = sel.value;
+        });
+        save('alma_bookings', allB);
+        renderAdminBookings();
+      });
+    });
+    el.querySelectorAll('[data-bk-pay]').forEach(function(sel){
+      sel.addEventListener('change', function(){
+        var allB = getBookings();
+        allB.forEach(function(b){
+          if (b.id === sel.getAttribute('data-bk-pay')) b.payStatus = sel.value;
         });
         save('alma_bookings', allB);
         renderAdminBookings();
@@ -887,8 +1149,15 @@
     el.innerHTML = users.map(function(u){
       var n = bookings.filter(function(b){ return b.email === u.email; }).length;
       return '<div class="admin-card"><h4>' + esc(u.name) + (u.admin ? '<span class="badge confirmed">Admin</span>' : '') + '</h4>' +
-        '<p style="color:var(--muted);font-size:14px">' + esc(u.email) + '<br>' + n + (n === 1 ? ' marcação' : ' marcações') + '</p></div>';
+        '<p style="color:var(--muted);font-size:14px">' + esc(u.email) + '<br>' + n + (n === 1 ? ' marcação' : ' marcações') + '</p>' +
+        '<button class="btn small" type="button" data-chat-cl="' + esc(u.email) + '">Conversar</button></div>';
     }).join('');
+    el.querySelectorAll('[data-chat-cl]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        adminChatEmail = btn.getAttribute('data-chat-cl');
+        switchAdminTab('chat');
+      });
+    });
   }
   function renderAdminSettings(){
     var el = document.getElementById('admin-tab-st');
@@ -900,16 +1169,347 @@
       '<label>Horário</label><input type="text" id="st-hours" value="' + esc(st.hours) + '">' +
       '<label>Local</label><input type="text" id="st-location" value="' + esc(st.location) + '">' +
       '<button class="btn small" type="button" id="st-save">Guardar definições</button></div>' +
-      '<div class="admin-card"><p style="font-size:14px;color:var(--muted)">As contas e as marcações ficam guardadas neste navegador. A base de dados do site liga-se depois, como nos outros sites.</p></div>';
+      '<div class="admin-card"><p style="font-size:14px;color:var(--muted)">As contas, as marcações e as conversas ficam guardadas neste navegador. A base de dados do site liga-se depois, como nos outros sites. O número de WhatsApp aqui alimenta o ícone dentro do chat.</p></div>';
     document.getElementById('st-save').addEventListener('click', function(){
-      save('alma_settings', {
+      saveSettingsPatch({
         spaName: document.getElementById('st-name').value.trim() || 'ALMA',
         whatsapp: document.getElementById('st-wa').value.trim().replace(/[^0-9]/g, '') || '258840000000',
         hours: document.getElementById('st-hours').value.trim(),
         location: document.getElementById('st-location').value.trim()
       });
-      applySettings();
       alert('Definições guardadas.');
+    });
+  }
+
+  // ---------- Chat ----------
+  function getChats(){ return load('alma_chats', []); }
+  function saveChats(c){
+    try { localStorage.setItem('alma_chats', JSON.stringify(c)); return true; }
+    catch (e) { return false; }
+  }
+  function getChatFor(email){
+    var all = getChats();
+    for (var i = 0; i < all.length; i++) { if (all[i].email === email) return {all: all, chat: all[i]}; }
+    var nc = {email: email, messages: []};
+    all.push(nc);
+    return {all: all, chat: nc};
+  }
+  function findChat(email){
+    var all = getChats();
+    for (var i = 0; i < all.length; i++) { if (all[i].email === email) return all[i]; }
+    return null;
+  }
+  function renderChatFab(){
+    var fab = document.getElementById('chat-fab');
+    if (!fab) return;
+    var u = currentUser();
+    if (!u) { fab.classList.remove('show'); return; }
+    fab.classList.add('show');
+    var c = findChat(u.email);
+    var unread = 0;
+    if (c) c.messages.forEach(function(m){ if (m.from === 'admin' && !m.read) unread++; });
+    fab.textContent = unread ? '💬 •' : '💬';
+  }
+  function chatMsgHTML(m, mine){
+    var body = '';
+    if (m.file) {
+      if (m.fileType && m.fileType.indexOf('image/') === 0) body += '<img src="' + m.file + '" alt="">';
+      else if (m.fileType && m.fileType.indexOf('video/') === 0) body += '<video src="' + m.file + '" controls></video>';
+      else if (m.fileType && m.fileType.indexOf('audio/') === 0) body += '<audio src="' + m.file + '" controls></audio>';
+      else body += '<a href="' + m.file + '" download="' + esc(m.fileName || 'ficheiro') + '">📄 ' + esc(m.fileName || 'Ficheiro') + '</a>';
+    }
+    if (m.text) body += '<div>' + esc(m.text) + '</div>';
+    var meta = '<span class="mtime">' + esc(m.time) + '</span>';
+    if (mine) meta += '<span class="ticks">' + (m.read ? '✓✓' : '✓') + '</span>';
+    return '<div class="msg ' + (mine ? 'mine' : 'theirs') + '">' + body + meta + '</div>';
+  }
+  function renderChat(){
+    var u = currentUser();
+    var el = document.getElementById('chat-msgs');
+    var st = getSettings();
+    document.getElementById('chat-spa-name').textContent = st.spaName;
+    document.getElementById('chat-wa').href = 'https://wa.me/' + st.whatsapp;
+    if (!u) {
+      el.innerHTML = '<p style="text-align:center;color:var(--muted)">Inicia sessão para conversar.</p>';
+      return;
+    }
+    var ref = getChatFor(u.email);
+    var changed = false;
+    ref.chat.messages.forEach(function(m){ if (m.from === 'admin' && !m.read) { m.read = true; changed = true; } });
+    if (changed) saveChats(ref.all);
+    if (!ref.chat.messages.length) {
+      el.innerHTML = '<p style="text-align:center;color:var(--muted)">Olá! Escreve a tua mensagem — o spa responde aqui. Podes anexar fotos, vídeos e áudios.</p>';
+    } else {
+      el.innerHTML = ref.chat.messages.map(function(m){ return chatMsgHTML(m, m.from === 'client'); }).join('');
+    }
+    el.scrollTop = el.scrollHeight;
+    renderChatFab();
+  }
+  function sendChatMessage(text, file, fileType, fileName){
+    var u = currentUser();
+    if (!u) return;
+    var ref = getChatFor(u.email);
+    ref.chat.messages.push({from: 'client', text: text || '', file: file || '', fileType: fileType || '', fileName: fileName || '', time: new Date().toLocaleString('pt-PT'), read: false});
+    if (!saveChats(ref.all)) { alert('Não foi possível guardar — o ficheiro pode ser demasiado grande.'); return; }
+    renderChat();
+  }
+  var chatRecorder = null, chatChunks = [];
+  function bindChat(){
+    var send = document.getElementById('chat-send');
+    var input = document.getElementById('chat-text');
+    var fileInp = document.getElementById('chat-file');
+    var recBtn = document.getElementById('chat-rec');
+    var closeBtn = document.getElementById('chat-close');
+    var fab = document.getElementById('chat-fab');
+    if (send) send.addEventListener('click', function(){
+      var t = input.value.trim();
+      if (!t) return;
+      input.value = '';
+      sendChatMessage(t, '', '', '');
+    });
+    if (input) input.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') { e.preventDefault(); send.click(); }
+    });
+    if (fileInp) fileInp.addEventListener('change', function(){
+      var f = fileInp.files[0];
+      fileInp.value = '';
+      if (!f) return;
+      if (f.size > 4 * 1024 * 1024) { alert('Ficheiro demasiado grande (máximo 4 MB).'); return; }
+      var r = new FileReader();
+      r.onload = function(){ sendChatMessage('', r.result, f.type, f.name); };
+      r.readAsDataURL(f);
+    });
+    if (recBtn) recBtn.addEventListener('click', function(){
+      if (chatRecorder) { chatRecorder.stop(); return; }
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === 'undefined') {
+        alert('Este navegador não permite gravar áudio.'); return;
+      }
+      navigator.mediaDevices.getUserMedia({audio: true}).then(function(stream){
+        chatChunks = [];
+        chatRecorder = new MediaRecorder(stream);
+        chatRecorder.ondataavailable = function(e){ if (e.data.size) chatChunks.push(e.data); };
+        chatRecorder.onstop = function(){
+          var blob = new Blob(chatChunks, {type: 'audio/webm'});
+          var r = new FileReader();
+          r.onload = function(){ sendChatMessage('', r.result, 'audio/webm', 'audio.webm'); };
+          r.readAsDataURL(blob);
+          stream.getTracks().forEach(function(t){ t.stop(); });
+          chatRecorder = null;
+          recBtn.classList.remove('on');
+          recBtn.textContent = '🎤';
+        };
+        chatRecorder.start();
+        recBtn.classList.add('on');
+        recBtn.textContent = '■';
+      }).catch(function(){ alert('Não foi possível aceder ao microfone.'); });
+    });
+    if (closeBtn) closeBtn.addEventListener('click', function(){ go('inicio'); });
+    if (fab) fab.addEventListener('click', function(){ go('chat'); });
+    var menuBtn = document.getElementById('menu-btn');
+    if (menuBtn) menuBtn.addEventListener('click', function(){
+      var mn = document.getElementById('main-nav');
+      if (mn) mn.classList.toggle('open');
+    });
+  }
+  function switchAdminTab(t){
+    var area = document.getElementById('admin-area');
+    if (!area) return;
+    area.querySelectorAll('[data-tab]').forEach(function(b){ b.classList.toggle('on', b.getAttribute('data-tab') === t); });
+    ['svc','bk','cl','chat','pg','st'].forEach(function(x){
+      var d = document.getElementById('admin-tab-' + x);
+      if (d) d.style.display = (x === t) ? 'block' : 'none';
+    });
+    if (t === 'chat') renderAdminChats();
+    if (t === 'pg') renderAdminPage();
+  }
+  function renderAdminChats(){
+    var el = document.getElementById('admin-tab-chat');
+    if (!el) return;
+    var all = getChats();
+    if (!all.length) { el.innerHTML = '<div class="admin-card"><p>Ainda não há conversas.</p></div>'; return; }
+    var html = all.map(function(c){
+      var unread = 0;
+      c.messages.forEach(function(m){ if (m.from === 'client' && !m.read) unread++; });
+      var last = c.messages.length ? c.messages[c.messages.length - 1] : null;
+      var prev = last ? (last.text || (last.file ? '📎 ' + (last.fileName || 'Ficheiro') : '')) : '';
+      return '<div class="admin-card"><h4>' + esc(c.email) + (unread ? ' <span class="badge pending">' + unread + ' nova(s)</span>' : '') + '</h4>' +
+        '<p style="color:var(--muted);font-size:14px">' + esc(prev) + '</p>' +
+        '<button class="btn small" type="button" data-open-chat="' + esc(c.email) + '">Abrir conversa</button></div>';
+    }).join('');
+    if (adminChatEmail) {
+      var ref = getChatFor(adminChatEmail);
+      var changed = false;
+      ref.chat.messages.forEach(function(m){ if (m.from === 'client' && !m.read) { m.read = true; changed = true; } });
+      if (changed) saveChats(ref.all);
+      html += '<div class="admin-card"><h4>Conversa com ' + esc(adminChatEmail) + '</h4>' +
+        '<div style="display:flex;flex-direction:column;gap:12px;margin:14px 0">' +
+        (ref.chat.messages.length ? ref.chat.messages.map(function(m){ return chatMsgHTML(m, m.from === 'admin'); }).join('') : '<p style="color:var(--muted)">Sem mensagens.</p>') +
+        '</div>' +
+        '<label>Mensagem</label><input type="text" id="admin-chat-text" placeholder="Escreve a resposta…">' +
+        '<label>Anexar ficheiro ou vídeo</label><input type="file" id="admin-chat-file" accept="image/*,video/*,.pdf,.doc,.docx">' +
+        '<button class="btn small" type="button" id="admin-chat-send">Enviar resposta</button></div>';
+    }
+    el.innerHTML = html;
+    el.querySelectorAll('[data-open-chat]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        adminChatEmail = btn.getAttribute('data-open-chat');
+        renderAdminChats();
+      });
+    });
+    var sendBtn = document.getElementById('admin-chat-send');
+    if (sendBtn) sendBtn.addEventListener('click', function(){
+      var t = document.getElementById('admin-chat-text').value.trim();
+      var f = document.getElementById('admin-chat-file').files[0];
+      var ref = getChatFor(adminChatEmail);
+      function pushMsg(file, fileType, fileName){
+        ref.chat.messages.push({from: 'admin', text: t, file: file || '', fileType: fileType || '', fileName: fileName || '', time: new Date().toLocaleString('pt-PT'), read: false});
+        if (!saveChats(ref.all)) alert('Não foi possível guardar — o ficheiro pode ser demasiado grande.');
+        renderAdminChats();
+      }
+      if (f) {
+        if (f.size > 4 * 1024 * 1024) { alert('Ficheiro demasiado grande (máximo 4 MB).'); return; }
+        var r = new FileReader();
+        r.onload = function(){ pushMsg(r.result, f.type, f.name); };
+        r.readAsDataURL(f);
+      } else {
+        if (!t) return;
+        pushMsg('', '', '');
+      }
+    });
+  }
+  function renderAdminPage(){
+    var el = document.getElementById('admin-tab-pg');
+    if (!el) return;
+    var st = getSettings();
+    var logoSrc = st.logo || 'images/logo.png?v=2';
+    el.innerHTML =
+      '<div class="admin-card"><h4>Logo do spa</h4>' +
+      '<img src="' + esc(logoSrc) + '" alt="Logo actual">' +
+      '<label>Novo logo (por ficheiro)</label><input type="file" accept="image/*" id="pg-logo">' +
+      '<button class="btn small" type="button" id="pg-logo-save">Guardar logo</button> ' +
+      '<button class="btn small danger" type="button" id="pg-logo-reset">Repor logo original</button></div>' +
+      '<div class="admin-card"><h4>Imagem e vídeo principal</h4>' +
+      '<label>Título do hero</label><input type="text" id="pg-hero-title" value="' + esc(st.heroTitle) + '">' +
+      '<label>Texto do hero</label><textarea rows="2" id="pg-hero-sub">' + esc(st.heroSub) + '</textarea>' +
+      '<label>Botão 1</label><input type="text" id="pg-btn1" value="' + esc(st.heroBtn1) + '">' +
+      '<label>Botão 2</label><input type="text" id="pg-btn2" value="' + esc(st.heroBtn2) + '">' +
+      '<label>O que aparece no hero</label><select id="pg-hero-media">' +
+      '<option value="video"' + (st.heroMedia !== 'image' ? ' selected' : '') + '>Vídeo principal</option>' +
+      '<option value="image"' + (st.heroMedia === 'image' ? ' selected' : '') + '>Imagem principal</option></select>' +
+      '<label>Imagem principal (por ficheiro)</label><input type="file" accept="image/*" id="pg-hero-img">' +
+      '<label>Imagem de espera do vídeo (por ficheiro)</label><input type="file" accept="image/*" id="pg-hero-poster">' +
+      '<button class="btn small" type="button" id="pg-hero-save">Guardar hero</button></div>' +
+      '<div class="admin-card"><h4>Botões extra no hero</h4>' +
+      '<div>' + (st.extraButtons || []).map(function(b, i){
+        return '<p style="font-size:14px">' + esc(b.label) + ' → ' + esc(b.link) + ' <button class="btn small danger" type="button" data-del-btn="' + i + '">Apagar</button></p>';
+      }).join('') + '</div>' +
+      '<label>Texto do botão</label><input type="text" id="pg-new-label">' +
+      '<label>Link do botão (#servicos ou https://…)</label><input type="text" id="pg-new-link">' +
+      '<button class="btn small" type="button" id="pg-btn-add">Adicionar botão</button></div>' +
+      '<div class="admin-card"><h4>Texto “Sobre”</h4>' +
+      '<label>Título</label><input type="text" id="pg-sobre-title" value="' + esc(st.sobreTitle) + '">' +
+      '<label>Texto 1</label><textarea rows="2" id="pg-sobre-t1">' + esc(st.sobreText1) + '</textarea>' +
+      '<label>Texto 2</label><textarea rows="2" id="pg-sobre-t2">' + esc(st.sobreText2) + '</textarea>' +
+      '<button class="btn small" type="button" id="pg-sobre-save">Guardar texto Sobre</button></div>' +
+      '<div class="admin-card"><h4>Secções novas na página inicial</h4>' +
+      '<div>' + (st.customSections || []).map(function(s, i){
+        return '<p style="font-size:14px"><b>' + esc(s.title) + '</b> <button class="btn small danger" type="button" data-del-sec="' + i + '">Apagar secção</button></p>';
+      }).join('') + '</div>' +
+      '<label>Título da secção</label><input type="text" id="pg-sec-title">' +
+      '<label>Texto da secção</label><textarea rows="2" id="pg-sec-text"></textarea>' +
+      '<label>Imagem da secção (por ficheiro, opcional)</label><input type="file" accept="image/*" id="pg-sec-img">' +
+      '<button class="btn small" type="button" id="pg-sec-add">Adicionar secção</button></div>' +
+      '<div class="admin-card"><p style="font-size:14px;color:var(--muted)">O link do WhatsApp (que alimenta o ícone dentro do chat) muda em Definições.</p></div>';
+    function readFileAsDataURL(input, cb){
+      var f = input.files[0];
+      if (!f) { cb(''); return; }
+      if (f.size > 3 * 1024 * 1024) { alert('Ficheiro demasiado grande (máximo 3 MB).'); cb(null); return; }
+      var r = new FileReader();
+      r.onload = function(){ cb(r.result); };
+      r.readAsDataURL(f);
+    }
+    document.getElementById('pg-logo-save').addEventListener('click', function(){
+      readFileAsDataURL(document.getElementById('pg-logo'), function(data){
+        if (data === null) return;
+        if (!data) { alert('Escolhe um ficheiro de logo.'); return; }
+        saveSettingsPatch({logo: data});
+        renderAdminPage();
+        alert('Logo guardado.');
+      });
+    });
+    document.getElementById('pg-logo-reset').addEventListener('click', function(){
+      saveSettingsPatch({logo: ''});
+      renderAdminPage();
+    });
+    document.getElementById('pg-hero-save').addEventListener('click', function(){
+      var patch = {
+        heroTitle: document.getElementById('pg-hero-title').value.trim() || 'ALMA',
+        heroSub: document.getElementById('pg-hero-sub').value.trim(),
+        heroBtn1: document.getElementById('pg-btn1').value.trim() || 'Agendar consulta',
+        heroBtn2: document.getElementById('pg-btn2').value.trim() || 'Ver todos os serviços',
+        heroMedia: document.getElementById('pg-hero-media').value
+      };
+      readFileAsDataURL(document.getElementById('pg-hero-img'), function(img){
+        if (img === null) return;
+        readFileAsDataURL(document.getElementById('pg-hero-poster'), function(poster){
+          if (poster === null) return;
+          if (img) patch.heroImage = img;
+          if (poster) patch.heroPoster = poster;
+          saveSettingsPatch(patch);
+          renderAdminPage();
+          alert('Hero guardado.');
+        });
+      });
+    });
+    document.getElementById('pg-btn-add').addEventListener('click', function(){
+      var label = document.getElementById('pg-new-label').value.trim();
+      var link = document.getElementById('pg-new-link').value.trim();
+      if (!label || !link) { alert('Escreve o texto e o link do botão.'); return; }
+      var st2 = getSettings();
+      var arr = st2.extraButtons || [];
+      arr.push({label: label, link: link});
+      saveSettingsPatch({extraButtons: arr});
+      renderAdminPage();
+    });
+    el.querySelectorAll('[data-del-btn]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var st2 = getSettings();
+        var arr = st2.extraButtons || [];
+        arr.splice(parseInt(btn.getAttribute('data-del-btn'), 10), 1);
+        saveSettingsPatch({extraButtons: arr});
+        renderAdminPage();
+      });
+    });
+    document.getElementById('pg-sobre-save').addEventListener('click', function(){
+      saveSettingsPatch({
+        sobreTitle: document.getElementById('pg-sobre-title').value.trim(),
+        sobreText1: document.getElementById('pg-sobre-t1').value.trim(),
+        sobreText2: document.getElementById('pg-sobre-t2').value.trim()
+      });
+      renderAdminPage();
+      alert('Texto Sobre guardado.');
+    });
+    document.getElementById('pg-sec-add').addEventListener('click', function(){
+      var title = document.getElementById('pg-sec-title').value.trim();
+      var text = document.getElementById('pg-sec-text').value.trim();
+      if (!title || !text) { alert('Escreve o título e o texto da secção.'); return; }
+      readFileAsDataURL(document.getElementById('pg-sec-img'), function(img){
+        if (img === null) return;
+        var st2 = getSettings();
+        var arr = st2.customSections || [];
+        arr.push({title: title, text: text, img: img || ''});
+        saveSettingsPatch({customSections: arr});
+        renderAdminPage();
+      });
+    });
+    el.querySelectorAll('[data-del-sec]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var st2 = getSettings();
+        var arr = st2.customSections || [];
+        arr.splice(parseInt(btn.getAttribute('data-del-sec'), 10), 1);
+        saveSettingsPatch({customSections: arr});
+        renderAdminPage();
+      });
     });
   }
 
@@ -917,7 +1517,9 @@
   document.getElementById('year').textContent = new Date().getFullYear();
   applySettings();
   renderAuthArea();
+  bindChat();
   showView((location.hash || '#inicio').slice(1));
 </script>
+<button id="chat-fab" class="chat-fab" type="button" title="Conversar com o spa">💬</button>
 </body>
 </html>
